@@ -17,6 +17,7 @@ namespace MisterIcy\SqlQueryBuilder;
 abstract class Expression
 {
     public const PRIORITY_SELECT = 100;
+    public const PRIORITY_FROM = 90;
 
     protected string $preSeparator = '(';
     protected string $separator = ', ';

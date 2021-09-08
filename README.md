@@ -1,4 +1,8 @@
 # SqlQueryBuilder
+[![codecov](https://codecov.io/gh/MisterIcy/sql-query-builder/branch/main/graph/badge.svg?token=0YFW6EOOJ5)](https://codecov.io/gh/MisterIcy/sql-query-builder)
+[![Coding Standards](https://github.com/MisterIcy/sql-query-builder/actions/workflows/coding-standards.yml/badge.svg)](https://github.com/MisterIcy/sql-query-builder/actions/workflows/coding-standards.yml)
+[![Static Analysis](https://github.com/MisterIcy/sql-query-builder/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/MisterIcy/sql-query-builder/actions/workflows/static-analysis.yml)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MisterIcy/sql-query-builder/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/MisterIcy/sql-query-builder/?branch=main)
 
 SQL Query Crafter for MySQL/MariaDB
 
