@@ -1,0 +1,35 @@
+{
+    "name": "mistericy/sql-query-builder",
+    "description": "Query Builder for MariaDB & MySQL",
+    "type": "library",
+    "require": {
+        "php": ">=7.4",
+        "symfony/polyfill-php80": "^1.23",
+        "symfony/polyfill-php81": "^1.23"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.12.98",
+        "squizlabs/php_codesniffer": "^3.6",
+        "infection/infection": "^0.25.0",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-strict-rules": "^0.12.11",
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Alexandros Koutroulis",
+            "email": "icyd3mon@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MisterIcy\\SqlQueryBuilder\\": "./src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\MisterIcy\\QueryBuilder\\": "./tests"
+        }
+    }
+}

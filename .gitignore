@@ -1,0 +1,10 @@
+vendor/
+phpunit.xml
+phpstan.neon
+.phpunit.result.cache
+.phpunit
+.coverage
+junit.xml
+clover.xml
+.phpcs-cache
+.idea/
