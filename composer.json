@@ -31,5 +31,9 @@
         "psr-4": {
             "Tests\\MisterIcy\\QueryBuilder\\": "./tests"
         }
+    },
+    "scripts": {
+        "tests": "./vendor/bin/phpunit",
+        "analyze": "./vendor/bin/phpstan"
     }
 }
