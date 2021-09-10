@@ -29,7 +29,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\MisterIcy\\QueryBuilder\\": "./tests"
+            "Tests\\MisterIcy\\SqlQueryBuilder\\": "./tests"
         }
     },
     "scripts": {
