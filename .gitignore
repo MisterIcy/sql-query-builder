@@ -4,7 +4,7 @@ phpstan.neon
 .phpunit.result.cache
 .phpunit
 .coverage
+coverage.xml
 junit.xml
-clover.xml
 .phpcs-cache
 .idea/
