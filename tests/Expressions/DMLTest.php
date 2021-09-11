@@ -3,6 +3,7 @@
 namespace Expressions;
 
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\From;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
 use PHPUnit\Framework\TestCase;
 
@@ -64,7 +65,22 @@ class DMLTest extends TestCase
             ]
         );
 
-        self::assertEquals('SELECT HIGH_PRIORITY STRAIGHT_JOIN SQL_SMALL_RESULT SQL_NO_CACHE id `userId`', strval($select));
+        self::assertEquals(
+            'SELECT HIGH_PRIORITY STRAIGHT_JOIN SQL_SMALL_RESULT SQL_NO_CACHE id `userId`',
+            strval($select)
+        );
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="From">
+    public function testSimpleFrom(): void
+    {
+        self::assertEquals('FROM test `t`', strval(new From('test')));
+    }
+
+    public function testFromWithAlias(): void
+    {
+        self::assertEquals('FROM test `c`', strval(new From('test', 'c')));
     }
     //</editor-fold>
 }
