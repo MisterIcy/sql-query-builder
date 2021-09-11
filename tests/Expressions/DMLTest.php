@@ -4,6 +4,11 @@ namespace Expressions;
 
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
+use MisterIcy\SqlQueryBuilder\Operations\AndX;
+use MisterIcy\SqlQueryBuilder\Operations\Eq;
+use MisterIcy\SqlQueryBuilder\Operations\Neq;
+use MisterIcy\SqlQueryBuilder\Operations\When;
 use PHPUnit\Framework\TestCase;
 
 class DMLTest extends TestCase
@@ -66,5 +71,41 @@ class DMLTest extends TestCase
 
         self::assertEquals('SELECT HIGH_PRIORITY STRAIGHT_JOIN SQL_SMALL_RESULT SQL_NO_CACHE id `userId`', strval($select));
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Where">
+    public function testSimpleWhere(): void
+    {
+        $where = new Where(new Eq(1, 2));
+        self::assertEquals('WHERE 1 = 2', strval($where));
+    }
+
+    public function testComplexWhere(): void
+    {
+        $where = new Where(new AndX(new Eq(42, 42), new Neq(1, 2)));
+        self::assertEquals('WHERE 42 = 42 AND 1 != 2', strval($where));
+    }
+
+    public function testAndWhere(): void
+    {
+        $where = new Where(new Eq(42, 42));
+        $where->setOption('composite', 'and');
+        self::assertEquals(' AND 42 = 42', strval($where));
+    }
+
+    public function testOrWhere(): void
+    {
+        $where = new Where(new Eq(42, 42));
+        $where->setOption('composite', 'or');
+        self::assertEquals(' OR 42 = 42', strval($where));
+    }
+
+    public function testInvalidCompositeWhere(): void
+    {
+        $where = new Where(new Eq(42, 42));
+        $where->setOption('composite', 'invalid');
+        self::assertEquals('WHERE 42 = 42', strval($where));
+    }
+
     //</editor-fold>
 }

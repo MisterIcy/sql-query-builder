@@ -15,6 +15,7 @@ abstract class Expression implements Countable, Iterator
     public const PRIORITY_SELECT = 100;
     public const PRIORITY_DELETE = 100;
     public const PRIORITY_FROM = 90;
+    public const PRIORITY_WHERE = 70;
 
     protected string $preSeparator = '(';
     protected string $separator = ', ';
