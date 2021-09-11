@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use MisterIcy\SqlQueryBuilder\QueryBuilder;
 use PHPUnit\Framework\TestCase;
 
 class QueryBuilderTest extends TestCase
@@ -14,6 +15,7 @@ class QueryBuilderTest extends TestCase
 
         self::assertEquals('SELECT * FROM test `t`', $queryBuilder->getQuery());
     }
+
     public function testSelectWhere(): void
     {
         $queryBuilder = new \MisterIcy\SqlQueryBuilder\QueryBuilder();
@@ -23,7 +25,8 @@ class QueryBuilderTest extends TestCase
 
         self::assertEquals('SELECT * FROM test `t` WHERE 42 = 42', $queryBuilder->getQuery());
     }
-    public function testSeleccWithComplexWhere(): void
+
+    public function testSelectWithComplexWhere(): void
     {
         $queryBuilder = new \MisterIcy\SqlQueryBuilder\QueryBuilder();
         $queryBuilder->select()
@@ -35,7 +38,16 @@ class QueryBuilderTest extends TestCase
         self::assertEquals(
             'SELECT * FROM test `t` WHERE 42 = 42 AND 42 != 42 OR 42 > 42',
             $queryBuilder->getQuery()
-        )
-        ;
+        );
+    }
+
+    public function testSelectWithGroupBy(): void
+    {
+        $queryBuilder = new QueryBuilder();
+        $queryBuilder->select()
+            ->from('test')
+            ->groupBy(['id']);
+
+        self::assertEquals('SELECT * FROM test `t` GROUP BY id', $queryBuilder->getQuery());
     }
 }
