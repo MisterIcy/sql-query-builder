@@ -6,6 +6,7 @@ namespace MisterIcy\SqlQueryBuilder\Expressions;
 
 use Countable;
 use Iterator;
+use MisterIcy\SqlQueryBuilder\Operations\Operation;
 
 /**
  * @implements Iterator<Expression>
@@ -19,6 +20,7 @@ abstract class Expression implements Countable, Iterator
     public const PRIORITY_GROUP_BY = 60;
     public const PRIORITY_HAVING = 50;
     public const PRIORITY_ORDER_BY = 40;
+    public const PRIORITY_LIMIT = 30;
 
     protected string $preSeparator = '(';
     protected string $separator = ', ';

@@ -8,6 +8,7 @@ use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\From;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\GroupBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Having;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\Limit;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\OrderBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
@@ -154,6 +155,17 @@ class QueryBuilder
     public function orderBy(array $fields): self
     {
         return $this->addExpression(new OrderBy($fields));
+    }
+
+    /**
+     * Adds a limit expression to the QueryBuilder
+     * @param int $limit The limit
+     * @param int|null $offset The offset (optional)
+     * @return self
+     */
+    public function limit(int $limit, ?int $offset = null): self
+    {
+        return $this->addExpression(new Limit($limit, $offset));
     }
 
     /**
