@@ -5,10 +5,12 @@ namespace Expressions;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\From;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\GroupBy;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\Having;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
 use MisterIcy\SqlQueryBuilder\Operations\AndX;
 use MisterIcy\SqlQueryBuilder\Operations\Eq;
+use MisterIcy\SqlQueryBuilder\Operations\Gt;
 use MisterIcy\SqlQueryBuilder\Operations\Neq;
 use MisterIcy\SqlQueryBuilder\Operations\When;
 use PHPUnit\Framework\TestCase;
@@ -151,6 +153,14 @@ class DMLTest extends TestCase
     {
         $groupBy = new GroupBy(['id', 'name' => 'DESC']);
         self::assertEquals('GROUP BY id ASC, name DESC', strval($groupBy));
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Having">
+    public function testHaving(): void
+    {
+        $having = new Having(new Gt('COUNT(visit)', 0));
+        self::assertEquals('HAVING COUNT(visit) > 0', strval($having));
     }
     //</editor-fold>
 }

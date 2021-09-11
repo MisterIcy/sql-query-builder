@@ -7,6 +7,7 @@ namespace MisterIcy\SqlQueryBuilder;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\From;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\GroupBy;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\Having;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
 use MisterIcy\SqlQueryBuilder\Expressions\Expression;
@@ -128,6 +129,17 @@ class QueryBuilder
     public function groupBy(array $fields): self
     {
         return $this->addExpression(new GroupBy($fields));
+    }
+
+    /**
+     * Adds a Having expression to the QueryBuilder.
+     *
+     * @param Expression $expression The expression to be used
+     * @return self
+     */
+    public function having(Expression $expression): self
+    {
+        return $this->addExpression(new Having($expression));
     }
 
     /**
