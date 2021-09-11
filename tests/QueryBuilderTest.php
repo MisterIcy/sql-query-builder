@@ -69,6 +69,7 @@ class QueryBuilderTest extends TestCase
         $queryBuilder = new QueryBuilder();
         $queryBuilder->select(['id', 'name' => 'userName', 'version'])
             ->from('users', 'u')
+            ->limit(100, 42)
             ->where(new IsNotNull('u.id'))
             ->andWhere(new Gt('u.version', 0))
             ->orderBy(['id' => 'DESC', 'userName'])
@@ -76,7 +77,7 @@ class QueryBuilderTest extends TestCase
             ->having(new Gte('COUNT(visit)', 1));
 
         self::assertEquals(
-            'SELECT id `f_0`, name `userName`, version `f_1` FROM users `u` WHERE u.id IS NOT NULL AND u.version > 0 GROUP BY userName ASC, id DESC HAVING COUNT(visit) >= 1 ORDER BY id DESC, userName ASC',
+            'SELECT id `f_0`, name `userName`, version `f_1` FROM users `u` WHERE u.id IS NOT NULL AND u.version > 0 GROUP BY userName ASC, id DESC HAVING COUNT(visit) >= 1 ORDER BY id DESC, userName ASC LIMIT 42, 100',
             $queryBuilder->getQuery()
         );
     }

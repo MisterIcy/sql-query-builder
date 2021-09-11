@@ -6,6 +6,7 @@ use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\From;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\GroupBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Having;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\Limit;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\OrderBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
@@ -185,4 +186,19 @@ class DMLTest extends TestCase
         self::assertEquals('ORDER BY id ASC, name DESC', strval($groupBy));
     }
     //</editor-fold>
+    public function testLimit(): void
+    {
+        $limit = new Limit(10);
+        self::assertEquals('LIMIT 10', strval($limit));
+    }
+    public function testLimitAndOffset(): void
+    {
+        $limit = new Limit(10, 5);
+        self::assertEquals('LIMIT 5, 10', strval($limit));
+    }
+    public function testLimitWithNegativeOffset(): void
+    {
+        $limit = new Limit(10, -10);
+        self::assertEquals('LIMIT 10', strval($limit));
+    }
 }
