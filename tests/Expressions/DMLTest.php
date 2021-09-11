@@ -4,6 +4,7 @@ namespace Expressions;
 
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\From;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\GroupBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
 use MisterIcy\SqlQueryBuilder\Operations\AndX;
@@ -132,5 +133,24 @@ class DMLTest extends TestCase
         self::assertEquals('WHERE 42 = 42', strval($where));
     }
 
+    //</editor-fold>
+    //<editor-fold desc="Group By">
+    public function testSimpleGroupBy(): void
+    {
+        $groupBy = new GroupBy(['id']);
+        self::assertEquals('GROUP BY id', strval($groupBy));
+    }
+
+    public function testGroupByAndOrder(): void
+    {
+        $groupBy = new GroupBy(['id' => 'DESC', 'name' => 'ASC']);
+        self::assertEquals('GROUP BY id DESC, name ASC', strval($groupBy));
+    }
+
+    public function testGroupByAndOrderMixed(): void
+    {
+        $groupBy = new GroupBy(['id', 'name' => 'DESC']);
+        self::assertEquals('GROUP BY id ASC, name DESC', strval($groupBy));
+    }
     //</editor-fold>
 }

@@ -6,6 +6,7 @@ namespace MisterIcy\SqlQueryBuilder;
 
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\From;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\GroupBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
 use MisterIcy\SqlQueryBuilder\Expressions\Expression;
@@ -115,6 +116,18 @@ class QueryBuilder
     public function orWhere(Expression $expression): self
     {
         return $this->addWhere($expression, ['composite' => 'or']);
+    }
+
+    /**
+     * Adds a Group By expression to the QueryBuilder.
+     *
+     * @param array<string, string>|array<int, string> $fields An associative array of fields or expressions,
+     * optionally paired with the order of the field/expression to be grouped by.
+     * @return self
+     */
+    public function groupBy(array $fields): self
+    {
+        return $this->addExpression(new GroupBy($fields));
     }
 
     /**
