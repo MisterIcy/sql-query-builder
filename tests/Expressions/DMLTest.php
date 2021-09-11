@@ -75,6 +75,15 @@ class DMLTest extends TestCase
             strval($select)
         );
     }
+
+    /**
+     * @group issue-8
+     */
+    public function testSelectWithMixedFields(): void
+    {
+        $select = new Select(['id', 'name' => 'userName', 'timestamp']);
+        self::assertEquals('SELECT id `f_0`, name `userName`, timestamp `f_1`', strval($select));
+    }
     //</editor-fold>
 
     //<editor-fold desc="From">

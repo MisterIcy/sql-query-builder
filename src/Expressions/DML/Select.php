@@ -44,6 +44,11 @@ class Select extends Expression
             $builder .= implode($this->separator, $this->fields);
         } else {
             foreach ($this->fields as $field => $alias) {
+                if (is_int($field)) {
+                    $temp = 'f_' . $field;
+                    $field = $alias;
+                    $alias = $temp;
+                }
                 $builder .= sprintf('%s `%s`%s', $field, $alias, $this->separator);
             }
             $builder = rtrim($builder, $this->separator);
