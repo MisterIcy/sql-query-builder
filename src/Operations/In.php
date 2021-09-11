@@ -4,8 +4,15 @@ namespace MisterIcy\SqlQueryBuilder\Operations;
 
 class In extends Operation
 {
+    /**
+     * @var mixed
+     */
     private $expression;
 
+    /**
+     * @param mixed $expression
+     * @param mixed ...$operands
+     */
     public function __construct($expression, ...$operands)
     {
         parent::__construct('IN', ...$operands);

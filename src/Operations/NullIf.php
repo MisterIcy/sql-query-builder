@@ -4,6 +4,10 @@ namespace MisterIcy\SqlQueryBuilder\Operations;
 
 class NullIf extends Operation
 {
+    /**
+     * @param mixed $left
+     * @param mixed $right
+     */
     public function __construct($left, $right)
     {
         parent::__construct('NULLIF', $left, $right);

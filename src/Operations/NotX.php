@@ -11,9 +11,9 @@ class NotX extends Operation
     }
 
     /**
-     * @param mixed
+     * @param Expression $condition
      */
-    public function __construct($condition)
+    public function __construct(Expression $condition)
     {
         parent::__construct('NOT', $condition);
     }
