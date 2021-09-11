@@ -106,14 +106,14 @@ class DMLTest extends TestCase
     {
         $where = new Where(new Eq(42, 42));
         $where->setOption('composite', 'and');
-        self::assertEquals(' AND 42 = 42', strval($where));
+        self::assertEquals('AND 42 = 42', strval($where));
     }
 
     public function testOrWhere(): void
     {
         $where = new Where(new Eq(42, 42));
         $where->setOption('composite', 'or');
-        self::assertEquals(' OR 42 = 42', strval($where));
+        self::assertEquals('OR 42 = 42', strval($where));
     }
 
     public function testInvalidCompositeWhere(): void
