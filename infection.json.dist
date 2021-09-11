@@ -1,0 +1,23 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "./src"
+        ]
+    },
+    "mutators": {
+        "@default": true
+    },
+    "logs": {
+        "badge": {
+            "branch": "0.*"
+        },
+        "github": true,
+        "summary": "summary.log",
+        "text": "infection.log",
+        "perMutator": "per-mutator.md"
+    },
+    "minCoveredMsi": 0.70,
+    "minMsi": 0.70
+
+}

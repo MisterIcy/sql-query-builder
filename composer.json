@@ -34,6 +34,7 @@
     },
     "scripts": {
         "tests": "./vendor/bin/phpunit",
-        "analyze": "./vendor/bin/phpstan"
+        "analyze": "./vendor/bin/phpstan",
+        "mutation": "./vendor/bin/infection"
     }
 }
