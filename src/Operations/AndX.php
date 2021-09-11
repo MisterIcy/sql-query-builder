@@ -7,6 +7,7 @@ use MisterIcy\SqlQueryBuilder\Expressions\Expression;
 class AndX extends Operation
 {
     use NestedOperation;
+
     /**
      * @param Expression $expressions
      */

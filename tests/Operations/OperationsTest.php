@@ -45,7 +45,7 @@ class OperationsTest extends TestCase
 
     public function testGreaterThan(): void
     {
-        static::assertEquals('1 > 2', strval(new Gt(1, 2,)));
+        static::assertEquals('1 > 2', strval(new Gt(1, 2)));
     }
 
     public function testGreaterThanOrEqual(): void
@@ -92,7 +92,8 @@ class OperationsTest extends TestCase
     public function testAndXComplex(): void
     {
         $and = new AndX(
-            new Eq(1, 2), new AndX(new IsNull('name'), new Gt('id', 0))
+            new Eq(1, 2),
+            new AndX(new IsNull('name'), new Gt('id', 0))
         );
         self::assertEquals('1 = 2 AND (name IS NULL AND id > 0)', strval($and));
     }
@@ -106,98 +107,118 @@ class OperationsTest extends TestCase
     public function testOrXComplex(): void
     {
         $or = new OrX(
-            new Eq(1, 2), new AndX(new IsNull('name'), new Gt('id', 0))
+            new Eq(1, 2),
+            new AndX(new IsNull('name'), new Gt('id', 0))
         );
         self::assertEquals('1 = 2 OR (name IS NULL AND id > 0)', strval($or));
     }
+
     public function testIfNull(): void
     {
-        $operation = new Eq(new IfNull('ts',0), 0);
+        $operation = new Eq(new IfNull('ts', 0), 0);
         self::assertEquals('IFNULL(ts, 0) = 0', strval($operation));
     }
+
     public function testSimpleNot(): void
     {
         $not = new NotX(new Eq(1, 2));
         self::assertEquals('NOT 1 = 2', strval($not));
     }
+
     public function testComplexNot(): void
     {
-        $not = new NotX(new AndX(new Eq(1,2), new Neq(1,2)));
+        $not = new NotX(new AndX(new Eq(1, 2), new Neq(1, 2)));
         self::assertEquals('NOT (1 = 2 AND 1 != 2)', strval($not));
     }
+
     public function testIn(): void
     {
-        $in = new In('id', 1,2,3);
+        $in = new In('id', 1, 2, 3);
         self::assertEquals('id IN (1, 2, 3)', strval($in));
     }
+
     public function testWhen(): void
     {
         $when = new When(new IsNull('name'), '0');
         self::assertEquals('WHEN name IS NULL THEN 0', strval($when));
     }
+
     public function testElse(): void
     {
         $else = new ElseX(0);
         self::assertEquals('ELSE 0', strval($else));
     }
+
     public function testSimpleCase(): void
     {
         $case = new CaseX(new When(new Eq(1, 2), 0), new ElseX(1));
         self::assertEquals('CASE WHEN 1 = 2 THEN 0 ELSE 1 END;', strval($case));
     }
+
     public function testNullSafeEq(): void
     {
         $eq = new EqNullsafe(1, 2);
         self::assertEquals('1 <=> 2', strval($eq));
     }
+
     public function testCoalesce(): void
     {
-        $coalesce = new Coalesce(1,2,3,4);
+        $coalesce = new Coalesce(1, 2, 3, 4);
         self::assertEquals('COALESCE(1, 2, 3, 4)', strval($coalesce));
     }
+
     public function testConcat(): void
     {
         $concat = new Concat('T', 'es', 't');
         self::assertEquals('CONCAT(T, es, t)', strval($concat));
     }
+
     public function testConcatWs(): void
     {
         $concat = new ConcatWs(',', 'T', 'es', 't');
         self::assertEquals('CONCAT_WS(\',\', T, es, t)', strval($concat));
     }
+
     public function testIfX(): void
     {
         $if = new IfX(new Eq(1, 2), '1', '0');
         self::assertEquals('IF(1 = 2, 1, 0)', strval($if));
     }
+
     public function testIsX(): void
     {
         $is = new IsX(new Eq(1, 2));
         self::assertEquals('1 = 2 IS TRUE', strval($is));
     }
+
     public function testIsNotX(): void
     {
-        $isnot = new IsNotX(new Eq(1,2), 'FALSE');
+        $isnot = new IsNotX(new Eq(1, 2), 'FALSE');
         self::assertEquals('1 = 2 IS NOT FALSE', strval($isnot));
     }
+
     public function testNotBetween(): void
     {
         self::assertEquals('NOT id BETWEEN 1 AND 2', strval(new NotX(new Between('id', 1, 2))));
     }
+
     public function testNotLike(): void
     {
         self::assertEquals('NOT name LIKE %test%', strval(new NotX(new Like('name', '%test%'))));
     }
+
     public function testNotIn(): void
     {
         self::assertEquals('NOT id IN (1, 2, 3)', strval(new NotX(new In('id', 1, 2, 3))));
     }
+
     public function testXorSimple(): void
     {
-        self::assertEquals('1 = 2 XOR 1 != 2', strval(new XorX(new Eq(1,2), new Neq(1,2))));
+        self::assertEquals('1 = 2 XOR 1 != 2', strval(new XorX(new Eq(1, 2), new Neq(1, 2))));
     }
+
     public function testNullIf(): void
     {
-        self::assertEquals('NULLIF(1, 2)', strval(new NullIf(1,2)));
+        self::assertEquals('NULLIF(1, 2)', strval(new NullIf(1, 2)));
     }
 }

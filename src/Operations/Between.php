@@ -4,6 +4,11 @@ namespace MisterIcy\SqlQueryBuilder\Operations;
 
 class Between extends Operation
 {
+    /**
+     * @param mixed $expression
+     * @param int|float $min
+     * @param int|float $max
+     */
     public function __construct($expression, $min, $max)
     {
         parent::__construct('BETWEEN', $expression, $min, $max);

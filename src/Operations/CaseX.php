@@ -2,8 +2,13 @@
 
 namespace MisterIcy\SqlQueryBuilder\Operations;
 
+use MisterIcy\SqlQueryBuilder\Expressions\Expression;
+
 class CaseX extends Operation
 {
+    /**
+     * @param Expression ...$conditions
+     */
     public function __construct(...$conditions)
     {
         parent::__construct('CASE', ...$conditions);
