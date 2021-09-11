@@ -8,9 +8,11 @@ use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\From;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\GroupBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Having;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\OrderBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
 use MisterIcy\SqlQueryBuilder\Expressions\Expression;
+use PhpParser\Node\Expr;
 
 class QueryBuilder
 {
@@ -140,6 +142,18 @@ class QueryBuilder
     public function having(Expression $expression): self
     {
         return $this->addExpression(new Having($expression));
+    }
+
+    /**
+     * Adds an Order By expression to the QueryBuilder.
+     *
+     * @param array<string, string>|array<int, string> $fields An associative array of fields or expressions,
+     * optionally paired with the order of the field/expression to be ordered by.
+     * @return self
+     */
+    public function orderBy(array $fields): self
+    {
+        return $this->addExpression(new OrderBy($fields));
     }
 
     /**
