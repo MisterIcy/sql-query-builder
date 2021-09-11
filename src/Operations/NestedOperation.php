@@ -8,7 +8,8 @@ trait NestedOperation
     {
         $builder = '';
         foreach ($this->operands as $expression) {
-            if (is_array(class_uses($expression)) &&
+            if (
+                is_array(class_uses($expression)) &&
                 in_array(NestedOperation::class, class_uses($expression), true)
             ) {
                 $builder .= sprintf(
