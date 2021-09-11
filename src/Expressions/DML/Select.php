@@ -17,7 +17,11 @@ class Select extends Expression
     private ?array $fields;
 
     /**
-     * @param array<string, string>|array<int, string>|null $fields
+     * Creates a new Select Expression.
+     *
+     * @param array<string, string>|array<int, string>|null $fields The fields to be selected. If the values are paired,
+     * then the key is the field to select and its value is the alias of the field. Leave null if you want to select
+     * everything *.
      */
     public function __construct(?array $fields = null)
     {
