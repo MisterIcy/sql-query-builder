@@ -6,6 +6,7 @@ use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\From;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\GroupBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Having;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\OrderBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
 use MisterIcy\SqlQueryBuilder\Operations\AndX;
@@ -161,6 +162,27 @@ class DMLTest extends TestCase
     {
         $having = new Having(new Gt('COUNT(visit)', 0));
         self::assertEquals('HAVING COUNT(visit) > 0', strval($having));
+    }
+    //</editor-fold>
+
+    //</editor-fold>
+    //<editor-fold desc="Order By">
+    public function testSimpleOrderBy(): void
+    {
+        $groupBy = new OrderBy(['id']);
+        self::assertEquals('ORDER BY id', strval($groupBy));
+    }
+
+    public function testOrderByAndOrder(): void
+    {
+        $groupBy = new OrderBy(['id' => 'DESC', 'name' => 'ASC']);
+        self::assertEquals('ORDER BY id DESC, name ASC', strval($groupBy));
+    }
+
+    public function testOrderByAndOrderMixed(): void
+    {
+        $groupBy = new OrderBy(['id', 'name' => 'DESC']);
+        self::assertEquals('ORDER BY id ASC, name DESC', strval($groupBy));
     }
     //</editor-fold>
 }
