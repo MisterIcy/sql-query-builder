@@ -6,13 +6,19 @@ namespace MisterIcy\SqlQueryBuilder;
 
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\From;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\FullJoin;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\GroupBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Having;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\InnerJoin;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\Join;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\LeftJoin;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Limit;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\OrderBy;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\RightJoin;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
 use MisterIcy\SqlQueryBuilder\Expressions\Expression;
+use MisterIcy\SqlQueryBuilder\Operations\Operation;
 use PhpParser\Node\Expr;
 
 class QueryBuilder
@@ -166,6 +172,36 @@ class QueryBuilder
     public function limit(int $limit, ?int $offset = null): self
     {
         return $this->addExpression(new Limit($limit, $offset));
+    }
+
+    /**
+     * Adds a new Join expression
+     * @param string $table The table to join to
+     * @param string $alias The table's alias
+     * @param Operation $on The expression to join ON
+     * @return self
+     */
+    public function join(string $table, string $alias, Operation $on): self
+    {
+        return $this->addExpression(new Join($table, $alias, $on));
+    }
+
+    public function leftJoin(string $table, string $alias, Operation $on, bool $outer = false): self
+    {
+        $join = new  LeftJoin($table, $alias, $on);
+        $join->setOption('outer', $outer);
+        return $this->addExpression($join);
+    }
+    public function rightJoin(string $table, string $alias, Operation $on, bool $outer = false): self
+    {
+        $join = new RightJoin($table, $alias, $on);
+        $join->setOption('outer', $outer);
+        return $this->addExpression($join);
+    }
+
+    public function innerJoin(string $table, string $alias, Operation $on): self
+    {
+        return $this->addExpression(new InnerJoin($table, $alias, $on));
     }
 
     /**

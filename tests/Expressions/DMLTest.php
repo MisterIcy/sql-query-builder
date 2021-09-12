@@ -6,8 +6,12 @@ use MisterIcy\SqlQueryBuilder\Expressions\DML\Delete;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\From;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\GroupBy;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Having;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\InnerJoin;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\Join;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\LeftJoin;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Limit;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\OrderBy;
+use MisterIcy\SqlQueryBuilder\Expressions\DML\RightJoin;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Select;
 use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
 use MisterIcy\SqlQueryBuilder\Operations\AndX;
@@ -201,4 +205,39 @@ class DMLTest extends TestCase
         $limit = new Limit(10, -10);
         self::assertEquals('LIMIT 10', strval($limit));
     }
+
+    //<editor-fold desc="JOINs">
+    public function testSimpleJoin(): void
+    {
+        $join = new Join('test', 't1', new Eq('t1.id', 't2.userId'));
+        self::assertEquals('JOIN test `t1` ON t1.id = t2.userId', strval($join));
+    }
+
+    public function testJoinManyConditions(): void
+    {
+         $join = new Join(
+             'test',
+             't1',
+             new AndX(new Eq('t1.id', 't2.userId'), new Eq('t2.active', 0))
+         );
+         self::assertEquals('JOIN test `t1` ON (t1.id = t2.userId AND t2.active = 0)', strval($join));
+    }
+
+    public function testJoinWithOuterOption(): void
+    {
+        $join = new LeftJoin('test', 't1', new Eq('t1.id', 1));
+        $join->setOption('outer', true);
+        self::assertEquals('LEFT OUTER JOIN test `t1` ON t1.id = 1', strval($join));
+    }
+    public function testInnerJoin(): void
+    {
+        $join = new InnerJoin('test', 't1', new Eq('t1.id', 't2.userId'));
+        self::assertEquals('INNER JOIN test `t1` ON t1.id = t2.userId', strval($join));
+    }
+    public function testRightJoin(): void
+    {
+        $join = new RightJoin('test', 't1', new Eq('t1.id', 't2.userId'));
+        self::assertEquals('RIGHT JOIN test `t1` ON t1.id = t2.userId', strval($join));
+    }
+    //</editor-fold>
 }
