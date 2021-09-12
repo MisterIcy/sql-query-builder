@@ -1,8 +1,8 @@
 # SqlQueryBuilder
 
-[![codecov](https://codecov.io/gh/MisterIcy/sql-query-builder/branch/0.1.x/graph/badge.svg?token=0YFW6EOOJ5)](https://codecov.io/gh/MisterIcy/sql-query-builder)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MisterIcy/sql-query-builder/badges/quality-score.png?b=0.1.x)](https://scrutinizer-ci.com/g/MisterIcy/sql-query-builder/?branch=0.1.x)
-[![Build Status](https://scrutinizer-ci.com/g/MisterIcy/sql-query-builder/badges/build.png?b=0.1.x)](https://scrutinizer-ci.com/g/MisterIcy/sql-query-builder/build-status/0.1.x)
+[![codecov](https://codecov.io/gh/MisterIcy/sql-query-builder/branch/0.2.x/graph/badge.svg?token=0YFW6EOOJ5)](https://codecov.io/gh/MisterIcy/sql-query-builder)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MisterIcy/sql-query-builder/badges/quality-score.png?b=0.2.x)](https://scrutinizer-ci.com/g/MisterIcy/sql-query-builder/?branch=0.1.x)
+[![Build Status](https://scrutinizer-ci.com/g/MisterIcy/sql-query-builder/badges/build.png?b=0.2.x)](https://scrutinizer-ci.com/g/MisterIcy/sql-query-builder/build-status/0.1.x)
 [![Coding Standards](https://github.com/MisterIcy/sql-query-builder/actions/workflows/coding-standards.yml/badge.svg)](https://github.com/MisterIcy/sql-query-builder/actions/workflows/coding-standards.yml)
 [![Static Analysis](https://github.com/MisterIcy/sql-query-builder/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/MisterIcy/sql-query-builder/actions/workflows/static-analysis.yml)
 

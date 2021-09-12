@@ -20,6 +20,7 @@ use MisterIcy\SqlQueryBuilder\Expressions\DML\Where;
 use MisterIcy\SqlQueryBuilder\Expressions\Expression;
 use MisterIcy\SqlQueryBuilder\Operations\Operation;
 use PhpParser\Node\Expr;
+use MisterIcy\SqlQueryBuilder\Expressions\DCL\Profiling;
 
 class QueryBuilder
 {
@@ -33,6 +34,8 @@ class QueryBuilder
         $this->expressions[] = $expression;
         return $this;
     }
+
+    private bool $profiling = false;
 
     /**
      * Starts a SELECT Operation
@@ -211,6 +214,10 @@ class QueryBuilder
      */
     public function getQuery(): string
     {
+        if ($this->profiling === true) {
+            $this->expressions[] = new Profiling($this->profiling);
+        }
+
         $expressions = Expression::sortExpressions($this->expressions);
         $builder = '';
         foreach ($expressions as $expression) {
@@ -218,5 +225,17 @@ class QueryBuilder
         }
 
         return rtrim($builder);
+    }
+
+    public function enableProfiling(): self
+    {
+        $this->profiling = true;
+        return $this;
+    }
+
+    public function disableProfiling(): self
+    {
+        $this->profiling = false;
+        return $this;
     }
 }

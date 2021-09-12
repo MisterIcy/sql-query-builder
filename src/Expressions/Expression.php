@@ -16,8 +16,9 @@ use MisterIcy\SqlQueryBuilder\Operations\NestedOperation;
  * @version 0.2.0
  * @package MisterIcy\SqlQueryBuilder\Expressions
  */
-abstract class Expression implements Countable
+abstract class Expression
 {
+    public const PRIORITY_SET = 500;
     public const PRIORITY_SELECT = 100;
     public const PRIORITY_DELETE = 100;
     public const PRIORITY_FROM = 90;
@@ -47,14 +48,6 @@ abstract class Expression implements Countable
     protected function __construct(int $priority = 0)
     {
         $this->priority = $priority;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function count(): int
-    {
-        return count($this->expressions);
     }
 
     /**
