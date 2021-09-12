@@ -31,6 +31,6 @@ class OptionTraitTest extends TestCase
     }
     public function testGetNonExistingOption(): void
     {
-        $this->assertNull($this->getOption('non_existent'));
+        self::assertNull($this->getOption('non_existent'));
     }
 }
