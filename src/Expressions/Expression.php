@@ -5,13 +5,18 @@ declare(strict_types=1);
 namespace MisterIcy\SqlQueryBuilder\Expressions;
 
 use Countable;
-use Iterator;
-use MisterIcy\SqlQueryBuilder\Operations\Operation;
+use MisterIcy\SqlQueryBuilder\Operations\NestedOperation;
 
 /**
- * @implements Iterator<Expression>
+ * Class Expression.
+ *
+ * @author Alexandros Koutroulis <icyd3mon@gmail.com>
+ * @license Apache-2.0
+ * @since 0.1.0
+ * @version 0.2.0
+ * @package MisterIcy\SqlQueryBuilder\Expressions
  */
-abstract class Expression implements Countable, Iterator
+abstract class Expression implements Countable
 {
     public const PRIORITY_SELECT = 100;
     public const PRIORITY_DELETE = 100;
@@ -34,65 +39,21 @@ abstract class Expression implements Countable, Iterator
     }
 
     /**
-     * @var Expression[]
+     * @var mixed[]
      */
-    protected array $expressions;
-
-    private int $position = 0;
+    protected array $expressions = [];
 
     protected function __construct(int $priority = 0)
     {
         $this->priority = $priority;
-        $this->expressions = [];
     }
 
     /**
      * @inheritDoc
      */
-    final public function count(): int
+    public function count(): int
     {
         return count($this->expressions);
-    }
-
-    /**
-     * @inheritDoc
-     * @return Expression
-     */
-    final public function current(): Expression
-    {
-        return $this->expressions[$this->position];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    final public function next(): void
-    {
-        ++$this->position;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    final public function key(): int
-    {
-        return $this->position;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    final public function valid(): bool
-    {
-        return isset($this->expressions[$this->position]);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    final public function rewind(): void
-    {
-        $this->position = 0;
     }
 
     /**
@@ -123,5 +84,13 @@ abstract class Expression implements Countable, Iterator
             return ($a->getPriority() < $b->getPriority()) ? 1 : -1;
         });
         return $expressions;
+    }
+
+    final protected function isNestedOperation(): bool
+    {
+        return (
+            is_array(class_uses($this)) &&
+            in_array(NestedOperation::class, class_uses($this), true)
+        );
     }
 }

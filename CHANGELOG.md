@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+ - Operations now use the expression array of the parent class in order to reduce complexity.
+
 ## [0.1.0] - 2021-09-11
 ### Added
 - The QueryBuilder is able to perform pretty complex Select operations.

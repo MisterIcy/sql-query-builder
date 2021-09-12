@@ -17,7 +17,7 @@ class CaseX extends Operation
     public function __toString(): string
     {
         $builder = sprintf('%s ', $this->operator);
-        foreach ($this->operands as $operand) {
+        foreach ($this->expressions as $operand) {
             $builder .= sprintf('%s ', $operand);
         }
         $builder .= 'END;';

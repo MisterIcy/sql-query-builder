@@ -14,6 +14,6 @@ class ElseX extends Operation
 
     public function __toString(): string
     {
-        return sprintf("%s %s", $this->operator, $this->operands[0]);
+        return sprintf("%s %s", $this->operator, $this->expressions[0]);
     }
 }
