@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
  - Operations now use the expression array of the parent class in order to reduce complexity.
+ - Expression's `__toString` function is now abstract, meaning that all child classes must implement it.
 
 ## [0.1.0] - 2021-09-11
 ### Added

@@ -61,15 +61,7 @@ abstract class Expression implements Countable
      *
      * @return string
      */
-    public function __toString(): string
-    {
-        $builder = '';
-        foreach ($this as $expression) {
-            $builder .= sprintf('%s%s', $expression, $this->separator);
-        }
-        $builder = rtrim($builder, $this->separator);
-        return $builder;
-    }
+    abstract public function __toString(): string;
 
     /**
      * @param Expression[] $expressions
