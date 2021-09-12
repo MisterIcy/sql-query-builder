@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
  - Added tests for OptionTrait in order to increase coverage.
  - Added support for simple LEFT / RIGHT / INNER JOINs
+ - Added profiling support in QueryBuilder
 
 ### Fixed
  - Fixed wrong behavior in OptionTrait's `unsetOption`.

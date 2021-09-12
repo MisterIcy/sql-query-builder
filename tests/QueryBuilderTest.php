@@ -100,4 +100,25 @@ class QueryBuilderTest extends TestCase
             $queryBuilder->getQuery()
         );
     }
+
+    public function testProfiling(): void
+    {
+        $queryBuilder = new QueryBuilder();
+        $queryBuilder->select()
+            ->from('tests');
+
+        $queryBuilder->enableProfiling();
+
+        self::assertEquals("SET profiling = 1;\n SELECT * FROM tests `t`", $queryBuilder->getQuery());
+
+        $queryBuilder = new QueryBuilder();
+        $queryBuilder->select()
+            ->enableProfiling()
+            ->from('tests');
+
+        $queryBuilder->disableProfiling();
+        self::assertEquals("SELECT * FROM tests `t`", $queryBuilder->getQuery());
+
+
+    }
 }
