@@ -11,6 +11,6 @@ class IsNotNull extends Operation
 
     public function __toString(): string
     {
-        return sprintf('%s %s', $this->operands[0], $this->operator);
+        return sprintf('%s %s', $this->expressions[0], $this->operator);
     }
 }

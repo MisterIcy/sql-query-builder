@@ -7,7 +7,7 @@ trait NestedOperation
     final public function __toString(): string
     {
         $builder = '';
-        foreach ($this->operands as $expression) {
+        foreach ($this->expressions as $expression) {
             if (
                 is_array(class_uses($expression)) &&
                 in_array(NestedOperation::class, class_uses($expression), true)

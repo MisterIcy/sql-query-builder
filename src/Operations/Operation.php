@@ -8,10 +8,6 @@ abstract class Operation extends Expression
 {
 
     protected string $operator;
-    /**
-     * @var array<int, mixed>
-     */
-    protected array $operands;
 
     /**
      * @param string $operator
@@ -20,9 +16,9 @@ abstract class Operation extends Expression
     public function __construct(string $operator, ...$operands)
     {
         $this->operator = $operator;
-        $this->operands = [];
+        $this->expressions = [];
         foreach ($operands as $operand) {
-            $this->operands[] = $operand;
+            $this->expressions[] = $operand;
         }
         parent::__construct(0);
     }
@@ -30,7 +26,7 @@ abstract class Operation extends Expression
     public function __toString(): string
     {
         $builder = '';
-        foreach ($this->operands as $operand) {
+        foreach ($this->expressions as $operand) {
             $builder .= sprintf('%s %s ', $operand, $this->operator);
         }
         return rtrim($builder, ' ' . $this->operator);

@@ -18,7 +18,7 @@ class ConcatWs extends Operation
             $this->operator,
             $this->preSeparator,
             $this->concatSeparator,
-            implode($this->separator, $this->operands),
+            implode($this->separator, $this->expressions),
             $this->postSeparator
         );
     }

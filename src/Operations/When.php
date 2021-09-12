@@ -17,6 +17,6 @@ class When extends Operation
 
     public function __toString(): string
     {
-        return sprintf('%s %s THEN %s', $this->operator, strval($this->operands[0]), $this->operands[1]);
+        return sprintf('%s %s THEN %s', $this->operator, strval($this->expressions[0]), $this->expressions[1]);
     }
 }

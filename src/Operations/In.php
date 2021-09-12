@@ -26,7 +26,7 @@ class In extends Operation
             $this->expression,
             $this->operator,
             $this->preSeparator,
-            implode($this->separator, $this->operands),
+            implode($this->separator, $this->expressions),
             $this->postSeparator
         );
     }

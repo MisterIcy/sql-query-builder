@@ -19,7 +19,7 @@ class NullIf extends Operation
             "%s%s%s%s",
             $this->operator,
             $this->preSeparator,
-            implode($this->separator, $this->operands),
+            implode($this->separator, $this->expressions),
             $this->postSeparator
         );
     }

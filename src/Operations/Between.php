@@ -16,6 +16,12 @@ class Between extends Operation
 
     public function __toString(): string
     {
-        return sprintf('%s %s %s AND %s', $this->operands[0], $this->operator, $this->operands[1], $this->operands[2]);
+        return sprintf(
+            '%s %s %s AND %s',
+            $this->expressions[0],
+            $this->operator,
+            $this->expressions[1],
+            $this->expressions[2]
+        );
     }
 }

@@ -15,6 +15,6 @@ class IfNull extends Operation
 
     public function __toString(): string
     {
-        return sprintf('%s(%s, %s)', $this->operator, $this->operands[0], $this->operands[1]);
+        return sprintf('%s(%s, %s)', $this->operator, $this->expressions[0], $this->expressions[1]);
     }
 }

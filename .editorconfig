@@ -1,0 +1,18 @@
+root = true
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+[*.php]
+charset = utf-8
+indent_size = 4
+indent_style = space
+tab_width = 4
+trim_trailing_whitespace = true
+max_line_length = 120
+
+ij_php_blank_lines_after_opening_tag = 1
+ij_php_blank_lines_after_imports = 1
+ij_php_blank_lines_before_return_statement = 1
+ij_php_catch_on_new_line = true
+ij_php_else_if_style = combine
