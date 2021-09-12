@@ -81,7 +81,7 @@ trait OptionTrait
      */
     public function unsetOption(string $name): self
     {
-        if (!$this->hasOption($name)) {
+        if ($this->hasOption($name)) {
             unset($this->options[$name]);
         }
         return $this;

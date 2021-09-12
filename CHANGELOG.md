@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+ - Added tests for OptionTrait in order to increase coverage.
+
+### Fixed
+ - Fixed wrong behavior in OptionTrait's `unsetOption`.
+
 ### Changed
  - Operations now use the expression array of the parent class in order to reduce complexity.
  - Expression's `__toString` function is now abstract, meaning that all child classes must implement it.
