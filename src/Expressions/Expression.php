@@ -21,6 +21,7 @@ abstract class Expression implements Countable
     public const PRIORITY_SELECT = 100;
     public const PRIORITY_DELETE = 100;
     public const PRIORITY_FROM = 90;
+    public const PRIORITY_JOIN = 80;
     public const PRIORITY_WHERE = 70;
     public const PRIORITY_GROUP_BY = 60;
     public const PRIORITY_HAVING = 50;
