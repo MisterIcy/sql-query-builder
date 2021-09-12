@@ -29,8 +29,7 @@ class Join extends Expression
         string $alias,
         Operation $on,
         string $operation = self::JOIN_TYPE
-    )
-    {
+    ) {
         parent::__construct(self::PRIORITY_JOIN);
         $this->table = $table;
         $this->alias = $alias;
@@ -46,7 +45,7 @@ class Join extends Expression
             $this->operation = implode(' ', $joinType);
         }
 
-        $builder = sprintf('%s %s `%s` ON ',$this->operation, $this->table, $this->alias);
+        $builder = sprintf('%s %s `%s` ON ', $this->operation, $this->table, $this->alias);
 
         if ($this->on->isNestedOperation()) {
             $builder .= sprintf('%s%s%s', $this->preSeparator, $this->on, $this->postSeparator);

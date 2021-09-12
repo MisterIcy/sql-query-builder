@@ -90,10 +90,10 @@ class QueryBuilderTest extends TestCase
         $queryBuilder = new QueryBuilder();
         $queryBuilder->select()
             ->from('tests')
-            ->join('t1', 't1', new Eq(1,1))
-            ->leftJoin('t1', 't1', new Eq(1,1))
-            ->rightJoin('t1', 't1', new Eq(1,1))
-            ->innerJoin('t1', 't1', new Eq(1,1));
+            ->join('t1', 't1', new Eq(1, 1))
+            ->leftJoin('t1', 't1', new Eq(1, 1))
+            ->rightJoin('t1', 't1', new Eq(1, 1))
+            ->innerJoin('t1', 't1', new Eq(1, 1));
 
         self::assertEquals(
             'SELECT * FROM tests `t` JOIN t1 `t1` ON 1 = 1 LEFT JOIN t1 `t1` ON 1 = 1 RIGHT JOIN t1 `t1` ON 1 = 1 INNER JOIN t1 `t1` ON 1 = 1',
